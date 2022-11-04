@@ -2,25 +2,28 @@
 // Address all the TODOs to make the tests pass!
 // Execute `rustlings hint enums3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+// 
 
 enum Message {
-    // TODO: implement the message variant types based on their usage below
+    Quit,
+    Move(Point) ,
+    ChangeColor((i32,i32,i32)),
+    Echo(String)
 }
 
 struct Point {
-    x: u8,
-    y: u8,
+    x: i32,
+    y: i32,
 }
 
 struct State {
-    color: (u8, u8, u8),
+    color: (i32, i32, i32),
     position: Point,
     quit: bool,
 }
 
 impl State {
-    fn change_color(&mut self, color: (u8, u8, u8)) {
+    fn change_color(&mut self, color: (i32, i32, i32)) {
         self.color = color;
     }
 
@@ -38,6 +41,19 @@ impl State {
 
     fn process(&mut self, message: Message) {
         // TODO: create a match expression to process the different message variants
+        match message{
+            Message::Quit =>{self.quit = true;},
+            Message::Move(Point{x,y}) => {
+                self.position.x = x;
+                self.position.y = y;
+            },
+            Message::Echo(s) => {
+
+            },
+            Message::ChangeColor((x,y,z)) =>{
+                self.color = (x,y,z);
+            }
+        }
     }
 }
 
@@ -52,7 +68,7 @@ mod tests {
             position: Point { x: 0, y: 0 },
             color: (0, 0, 0),
         };
-        state.process(Message::ChangeColor((255, 0, 255)));
+        state.process(Message::ChangeColor((255i32, 0i32, 255i32)));
         state.process(Message::Echo(String::from("hello world")));
         state.process(Message::Move(Point { x: 10, y: 15 }));
         state.process(Message::Quit);
