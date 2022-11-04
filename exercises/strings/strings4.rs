@@ -23,7 +23,7 @@ fn main() {
     string("nice weather".into());
     string(format!("Interpolation {}", "Station"));
     string_slice(&String::from("abc")[0..1]);
-    string("  hello there ".trim());
-    string_slice("Happy Monday!".to_string().replace("Mon", "Tues"));
-    string_slice("mY sHiFt KeY iS sTiCkY".to_lowercase());
+    string_slice("  hello there ".trim());
+    string("Happy Monday!".to_string().replace("Mon", "Tues"));
+    string("mY sHiFt KeY iS sTiCkY".to_lowercase());
 }
